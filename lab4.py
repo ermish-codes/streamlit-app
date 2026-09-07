@@ -15,7 +15,7 @@ st.set_page_config(
 st.title("Exploratory Data Analysis Interface")
 
 # 2. Sidebar: Dataset Ingestion
-st.sidebar.title("EDA TASK")
+st.sidebar.title("EDA file uploading")
 uploaded_file = st.sidebar.file_uploader("Upload CSV file", type=["csv"])
 
 if uploaded_file is not None:
@@ -58,7 +58,7 @@ if uploaded_file is not None:
         st.info("No numerical columns found.")
 
     # 4. Attribute Selection
-    st.sidebar.subheader("🔍 Attribute Selection")
+    st.sidebar.subheader("Attribute Selection")
     selected_col = st.sidebar.selectbox(
         "Choose a column to visualize:",
         df.columns.tolist()
@@ -80,7 +80,7 @@ if uploaded_file is not None:
     fig, ax = plt.subplots(figsize=(8, 4))
 
     if col_type == "Numerical":
-        sns.histplot(df[selected_col].dropna(), bins=20, kde=False, color="blue", ax=ax)
+        sns.histplot(df[selected_col].dropna(), bins=20, kde=False, color="purple", ax=ax)
         ax.set_title(f"Distribution of {selected_col}")
         ax.set_xlabel(selected_col)
         ax.set_ylabel("Frequency")
@@ -103,4 +103,4 @@ if uploaded_file is not None:
         st.pyplot(fig)
 
 else:
-    st.info("Please upload a CSV file to start EDA.")
+    st.write("Please upload a CSV file from the side.")
